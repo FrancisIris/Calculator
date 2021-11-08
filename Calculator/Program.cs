@@ -6,6 +6,7 @@ namespace Calculator
     {
         static void Main(string[] args)
         {
+            //should in future declare vars as i need them not at the start
             string n1;
             string n2;
             float output=0;
