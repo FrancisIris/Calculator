@@ -6,34 +6,61 @@ namespace Calculator
     {
         static void Main(string[] args)
         {
-            //should in future declare vars as i need them not at the start
-            string n1;
-            string n2;
-            float output=0;
             string operation;
 
-            Console.WriteLine("Please enter a number");
-            n1 = Console.ReadLine();
-            Console.WriteLine("add, minus, times, divide?");
-            operation =Console.ReadLine();
-            Console.WriteLine("Please enter a number you would like to "+operation+" (by)");
-            n2 = Console.ReadLine();
+            do
+            {
+                Console.WriteLine("+, -, * or / ?");
+                operation = Console.ReadLine();
+            } while (operation != "+" && operation != "-" && operation != "*" && operation != "/");
+
+            string numberOfValuesInput;
+            do
+            {
+                Console.WriteLine("How many numbers would you like to {0} together?", operation);
+                numberOfValuesInput = Console.ReadLine();
+            } while (!(int.TryParse(numberOfValuesInput,out int intInput)&& intInput > 1));
+
+            double[] UserValues = new double[int.Parse(numberOfValuesInput)];
+            for (int iterationsComplete = 0; iterationsComplete < int.Parse(numberOfValuesInput); iterationsComplete++)
+            {
+                string userValue;
+                do
+                {
+                    Console.WriteLine("{0}. Please enter a number: ",iterationsComplete+1);
+                    userValue=Console.ReadLine();
+                } while (!(double.TryParse(userValue, out _)));
+                UserValues[iterationsComplete] = double.Parse(userValue);
+            }
+            double outputDouble = 0;
             switch (operation)
             {
-                case "add":
-                    output = Int32.Parse(n1) + Int32.Parse(n2);
+                case "+":
+                    foreach(double value in UserValues) {
+                        outputDouble += value;
+                    }
                     break;
-                case "minus":
-                    output = Int32.Parse(n1) - Int32.Parse(n2);
+                case "-":
+                    foreach (double value in UserValues)
+                    {
+                        outputDouble -= value;
+                    }
                     break;
-                case "times":
-                    output = Int32.Parse(n1) * Int32.Parse(n2);
+                case "*":
+                    foreach (double value in UserValues)
+                    {
+                        outputDouble *= value;
+                    }
                     break;
-                case "divide":
-                    output = Int32.Parse(n1) / Int32.Parse(n2);
+                case "/":
+                    foreach (double value in UserValues)
+                    {
+                        outputDouble /= value;
+                    }
                     break;
             }
-            Console.WriteLine(n1 + " " + operation + " " + n2 + " = "+ string.Format("{0:N2}",output));
+            Console.WriteLine("The answer is "+outputDouble);
+
         }
     }
 }
