@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace Calculator
@@ -32,39 +33,23 @@ namespace Calculator
             }
 
             double outputValue = 0;
-            string answer = "The calculation: ";
             switch (operation)
             {
                 case "+":
-                    foreach (int value in UserValues)
-                    {
-                        outputValue += value;
-                        answer += value + "+";
-                    }
+                    outputValue = UserValues.Sum();
                     break;
                 case "-":
-                    foreach (int value in UserValues)
-                    {
-                        outputValue -= value;
-                        answer += value + "-";
-                    }
+                    outputValue = UserValues.Skip(1).Aggregate(UserValues[0],(sum, val) => sum - val);
                     break;
                 case "*":
-                    foreach (int value in UserValues)
-                    {
-                        outputValue *= value;
-                        answer += value + "*";
-                    }
+                    outputValue = UserValues.Aggregate(1,(sum, val) => sum * val);
                     break;
                 case "/":
-                    foreach (int value in UserValues)
-                    {
-                        outputValue /= value;
-                        answer += value + "/";
-                    }
+                    outputValue = UserValues.Skip(1).Aggregate(UserValues[0], (sum, val) => sum / val);
                     break;
+                    //int is probably not the best choice for the calculator as it leads the division operator to regularly output 0
             }
-            answer = answer.Substring(0, answer.Length - 1) + " is equal to: " + outputValue;
+            string answer = string.Join(operation, UserValues) + "=" + outputValue;
             Console.WriteLine(answer);
             fileHandler.AppendToFile(answer);
             Console.WriteLine("Enter to continue");
