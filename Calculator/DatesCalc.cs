@@ -17,7 +17,7 @@ namespace Calculator
             DateTime userDate = GetDate();
             Console.WriteLine("How many days would you like to add to this date?:");
             int daysAdded = NumbersCalc.GetUserValue();
-            string answer = string.Format("{0} with a {1} day difference ends up as {2}.", userDate.ToShortDateString(), daysAdded, userDate.AddDays(daysAdded).ToShortDateString());
+            string answer = $"{userDate.ToShortDateString()} with a {daysAdded} day difference ends up as {userDate.AddDays(daysAdded).ToShortDateString()}.";
             Console.WriteLine(answer);
             fileHandler.AppendToFile(answer);
             Console.WriteLine("Enter to continue");

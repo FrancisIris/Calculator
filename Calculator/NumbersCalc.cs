@@ -12,6 +12,7 @@ namespace Calculator
         {
             this.fileHandler = fileHandler;
         }
+
         public void NumberCalculator()
         {
             string operation;
@@ -55,6 +56,7 @@ namespace Calculator
             Console.WriteLine("Enter to continue");
             Console.ReadLine();
         }
+
         private static bool GetOperator(string userInput)
         {
             switch (userInput)
