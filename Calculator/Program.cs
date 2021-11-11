@@ -6,17 +6,20 @@ namespace Calculator
     {
         static void Main(string[] args)
         {
+
+            var fileHandler = new FileHandler();
+
             Console.WriteLine("Welcome.");
             bool runningCheck = true;
             while (runningCheck)
             {
-                runningCheck = MainMenu();
+                runningCheck = MainMenu(fileHandler);
             }
             return;
         }
 
 
-        static bool MainMenu()
+        static bool MainMenu( FileHandler fileHandler)
         {
             Console.Clear();
             Console.WriteLine("Mode options:");
@@ -27,10 +30,10 @@ namespace Calculator
             switch (result)
             {
                 case "1":
-                    NumbersCalc.NumberCalculator();
+                    new NumbersCalc(fileHandler).NumberCalculator();
                     break;
                 case "2":
-                    DatesCalc.DateCalculator();
+                    new DatesCalc(fileHandler).DateCalculator();
                     break;
                 case "3":
                     return false;

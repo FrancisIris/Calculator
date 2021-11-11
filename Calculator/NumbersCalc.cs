@@ -6,7 +6,12 @@ namespace Calculator
 {
     class NumbersCalc
     {
-        public static void NumberCalculator()
+        private FileHandler fileHandler;
+        public NumbersCalc(FileHandler fileHandler)
+        {
+            this.fileHandler = fileHandler;
+        }
+        public void NumberCalculator()
         {
             string operation;
             Console.Clear();
@@ -26,39 +31,46 @@ namespace Calculator
                 UserValues[iterationsComplete] = GetUserValue();
             }
 
-            double outputInt = 0;
+            double outputValue = 0;
+            string answer = "The calculation: ";
             switch (operation)
             {
                 case "+":
                     foreach (int value in UserValues)
                     {
-                        outputInt += value;
+                        outputValue += value;
+                        answer += value + "+";
                     }
                     break;
                 case "-":
                     foreach (int value in UserValues)
                     {
-                        outputInt -= value;
+                        outputValue -= value;
+                        answer += value + "-";
                     }
                     break;
                 case "*":
                     foreach (int value in UserValues)
                     {
-                        outputInt *= value;
+                        outputValue *= value;
+                        answer += value + "*";
                     }
                     break;
                 case "/":
                     foreach (int value in UserValues)
                     {
-                        outputInt /= value;
+                        outputValue /= value;
+                        answer += value + "/";
                     }
                     break;
             }
-            Console.WriteLine("The answer is " + outputInt);
+            answer = answer.Substring(0, answer.Length - 1) + " is equal to: " + outputValue;
+            Console.WriteLine(answer);
+            fileHandler.AppendToFile(answer);
             Console.WriteLine("Enter to continue");
             Console.ReadLine();
         }
-        public static bool GetOperator(string userInput)
+        private static bool GetOperator(string userInput)
         {
             switch (userInput)
             {
