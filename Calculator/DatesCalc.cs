@@ -4,14 +4,14 @@ using System.Text;
 
 namespace Calculator
 {
-    public class DatesCalc
+    public class DatesCalc: ICalc
     {
         private FileHandler fileHandler;
         public DatesCalc(FileHandler fileHandler)
         {
             this.fileHandler = fileHandler;
         }
-        public void DateCalculator()
+        public void DoCalc()
         {
             Console.Clear();
             DateTime userDate = GetDate();

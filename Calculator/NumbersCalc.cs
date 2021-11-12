@@ -13,7 +13,7 @@ namespace Calculator
             this.fileHandler = fileHandler;
         }
 
-        public void NumberCalculator()
+        public void DoCalc()
         {
             string operation;
             Console.Clear();

@@ -30,10 +30,10 @@ namespace Calculator
             switch (result)
             {
                 case "1":
-                    new NumbersCalc(fileHandler).NumberCalculator();
+                    new NumbersCalc(fileHandler).DoCalc();
                     break;
                 case "2":
-                    new DatesCalc(fileHandler).DateCalculator();
+                    new DatesCalc(fileHandler).DoCalc();
                     break;
                 case "3":
                     return false;
